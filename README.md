@@ -7,15 +7,7 @@ elk with podman and podman-compose, for RHEL8 based images.
 Install podman, python and git.
 
 ```sh
-sudo dnf install -y podman python3 git
-```
-
-Create a regular OS user to avoid bugs with podman userids, also assign wheel group privileges for sudo.
-
-```sh
-sudo useradd -m -d /home/elk elk && \
-sudo usermod -a -G wheel elk && \
-sudo su - elk
+sudo dnf install -y podman python3.9 git
 ```
 
 Install podman-compose for regular user.
@@ -32,18 +24,6 @@ git clone https://github.com/aldenso/elk-podman && cd elk-podman
 
 Create a Data directory for elastic and disable SELinux (yes... I know, but fuc** it, this is a lab).
 
-```sh
-mkdir -p /tmp/elk/data
-sudo setenforce 0
-```
-
-Export the desired ELK version and build the images.
-
-```sh
-export ELK_VERSION=7.9.2
-podman-compose -f podman-compose.yml build
-```
-
 Enable the followin ports for testing.
 
 ```sh
@@ -56,7 +36,7 @@ sudo firewall-cmd --reload
 Remember to enable the same ports in case you are testing in your cloud and not your local machine.
 
 ```sh
-podman-compose -f podman-compose.yml up
+podman-compose up -d
 ```
 
 Export the PUBLIC IP (your external cloud IP, assigned to your VM), in case you are using your local machine use 'localhost'.
