@@ -13,16 +13,8 @@ sudo dnf install -y podman python3.9 git
 Install podman-compose for regular user.
 
 ```sh
-python3 -m pip install --user podman-compose
+python3.9 -m pip install --user podman-compose
 ```
-
-Clone the repo and CD into it.
-
-```sh
-git clone https://github.com/aldenso/elk-podman && cd elk-podman
-```
-
-Create a Data directory for elastic and disable SELinux (yes... I know, but fuc** it, this is a lab).
 
 Enable the followin ports for testing.
 
@@ -37,12 +29,6 @@ Remember to enable the same ports in case you are testing in your cloud and not 
 
 ```sh
 podman-compose up -d
-```
-
-Export the PUBLIC IP (your external cloud IP, assigned to your VM), in case you are using your local machine use 'localhost'.
-
-```sh
-export PUBLICIP=X.X.X.X
 ```
 
 Create 2 indices.
